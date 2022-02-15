@@ -18,7 +18,7 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     private readonly IDiscoverDevices _discoverDevices;
 
     private UdpClient _udpClient = null;
-    private IPEndPoint _ipEndPoint = null;
+
     
     /// <summary>
     /// 构造函数
@@ -59,10 +59,10 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     private void receiveReady()
     {
 
-        this._ipEndPoint = new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport));
-
+       
         var udpreceiver = new UdpClient(int.Parse(this._sendport));
-        
+        udpreceiver.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
+        var recivecast=new IPEndPoint(IPAddress.Parse(this._broadcastGroup), int.Parse(this._localport));
        
         t = new Thread(() =>
         {
@@ -70,7 +70,7 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
             {
                 if (this._udpClient!=null)
                 {
-                    var result = udpreceiver.Receive(ref this._ipEndPoint);
+                    var result = udpreceiver.Receive(ref recivecast);
                     if (result.Length!=0)
                     {
                         this.ReceiveDataEvent?.Invoke("received");
