@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FantasyMAST.Pages.LoginPage"
              BackgroundColor="White">
     <ContentPage.Resources>
-        <Style TargetType="Label"  x:Key="labelstyle">
+        <ResourceDictionary>
+
+      <Style TargetType="Label"  x:Key="labelstyle">
             <Setter Property="HorizontalOptions" Value="End"></Setter>
             <Setter Property="VerticalTextAlignment" Value="Center"/>
         </Style>
@@ -13,13 +14,16 @@
             <On Platform="iOS" Value="False" />
             <On Platform="Android" Value="False" />
             <On Platform="UWP" Value="True" />
+            
         </OnPlatform>
+        </ResourceDictionary>
+  
         
     </ContentPage.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition  Width="{OnPlatform UWP=*, Android=auto,iOS=auto }"/>
+            <ColumnDefinition  Width="{OnPlatform UWP=*, Android=auto,iOS=auto}"/>
         </Grid.ColumnDefinitions>
 
     <StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand">
