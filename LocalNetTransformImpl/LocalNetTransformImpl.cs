@@ -60,14 +60,17 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     {
 
         this._ipEndPoint = new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport));
+
+        var udpreceiver = new UdpClient(int.Parse(this._sendport));
         
+       
         t = new Thread(() =>
         {
             while (true)
             {
                 if (this._udpClient!=null)
                 {
-                    var result = this._udpClient.Receive(ref this._ipEndPoint);
+                    var result = udpreceiver.Receive(ref this._ipEndPoint);
                     if (result.Length!=0)
                     {
                         this.ReceiveDataEvent?.Invoke("received");
