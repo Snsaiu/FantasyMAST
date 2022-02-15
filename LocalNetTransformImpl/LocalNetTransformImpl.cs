@@ -63,14 +63,18 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         
         t = new Thread(() =>
         {
-            if (this._udpClient!=null)
+            while (true)
             {
-                var result = this._udpClient.Receive(ref this._ipEndPoint);
-                if (result.Length!=0)
+                if (this._udpClient!=null)
                 {
-                    this.ReceiveDataEvent?.Invoke("received");
+                    var result = this._udpClient.Receive(ref this._ipEndPoint);
+                    if (result.Length!=0)
+                    {
+                        this.ReceiveDataEvent?.Invoke("received");
+                    }
                 }
             }
+            
         });
         t.Start();
     
