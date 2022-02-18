@@ -37,7 +37,7 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         _sendport = sendport;
         this._udpClient = new UdpClient(Int32.Parse(this._localport));
         this._udpClient.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-        this.receiveReady();
+       // this.receiveReady();
     }
     public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
     {
@@ -51,7 +51,7 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         Debug.Assert(discoverDevices != null, nameof(discoverDevices) + " != null");
         _discoverDevices = discoverDevices;
         this._udpClient = new UdpClient(Int32.Parse(this._localport));
-        this.receiveReady();
+       // this.receiveReady();
     }
     //接收线程
     Thread t;
