@@ -35,9 +35,9 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         _broadcastGroup = broadcastGroup;
         Debug.Assert(sendport != null, nameof(sendport) + " != null");
         _sendport = sendport;
-        this._udpClient = new UdpClient(Int32.Parse(this._localport));
+        this._udpClient = new UdpClient(int.Parse(this._localport));
         this._udpClient.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-       // this.receiveReady();
+        this.receiveReady();
     }
     public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
     {
@@ -51,7 +51,7 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         Debug.Assert(discoverDevices != null, nameof(discoverDevices) + " != null");
         _discoverDevices = discoverDevices;
         this._udpClient = new UdpClient(Int32.Parse(this._localport));
-       // this.receiveReady();
+        this.receiveReady();
     }
     //接收线程
     Thread t;
@@ -59,23 +59,32 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     private void receiveReady()
     {
 
-       
+
         var udpreceiver = new UdpClient(int.Parse(this._sendport));
         udpreceiver.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-        var recivecast=new IPEndPoint(IPAddress.Parse(this._broadcastGroup), int.Parse(this._localport));
-       
+       // var recivecast = new IPEndPoint(IPAddress.Parse(this._broadcastGroup),int.Parse(this._sendport));
+       // this._udpClient.EnableBroadcast = true;
+      
+        //udpreceiver.EnableBroadcast = true;
         t = new Thread(() =>
         {
             while (true)
             {
-                if (this._udpClient!=null)
+
+                var result = udpreceiver.ReceiveAsync().Result;
+                if (result.Buffer!=null)
                 {
-                    var result = udpreceiver.Receive(ref recivecast);
-                    if (result.Length!=0)
-                    {
-                        this.ReceiveDataEvent?.Invoke("received");
-                    }
+                    string data = Encoding.UTF8.GetString(result.Buffer);
+                    this.ReceiveDataEvent?.Invoke(data);
                 }
+               
+               // var result = udpreceiver.Receive(ref recivecast);
+                //if (result.Length != 0)
+                //{
+                //    string data = Encoding.UTF8.GetString(result);
+                //    this.ReceiveDataEvent?.Invoke("received");
+                //}
+
             }
             
         });

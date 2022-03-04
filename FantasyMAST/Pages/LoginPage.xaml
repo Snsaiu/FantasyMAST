@@ -49,17 +49,17 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-                <Label Text="用户名:" GridLayout.Row="0" Style="{x:StaticResource labelstyle}"></Label>
-                <Label Text="密码:" GridLayout.Column="0" GridLayout.Row="1" Style="{x:StaticResource labelstyle}"></Label>
+                <Label Text="用户名:" Grid.Row="0" Style="{x:StaticResource labelstyle}"></Label>
+                <Label Text="密码:" Grid.Column="0" Grid.Row="1" Style="{x:StaticResource labelstyle}"></Label>
 
-            <Entry Placeholder="请输入邮箱" GridLayout.Column="1" MinimumWidthRequest="150" HorizontalOptions="StartAndExpand" ></Entry>
-                <Entry Placeholder="请输入密码" GridLayout.Column="1" MinimumWidthRequest="150" IsPassword="True" HorizontalOptions="StartAndExpand" GridLayout.Row="1"></Entry>
+            <Entry Placeholder="请输入邮箱" Grid.Column="1" MinimumWidthRequest="150" HorizontalOptions="StartAndExpand" ></Entry>
+                <Entry Placeholder="请输入密码" Grid.Column="1" MinimumWidthRequest="150" IsPassword="True" HorizontalOptions="StartAndExpand" Grid.Row="1"></Entry>
 
-            <Button Text="登录" GridLayout.Row="3" GridLayout.ColumnSpan="2" HorizontalOptions="CenterAndExpand" WidthRequest="200"></Button>
+            <Button Text="登录" Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" WidthRequest="200"></Button>
         </Grid>
     </StackLayout>
 
-        <Image BackgroundColor="Red" IsVisible="{x:StaticResource showimage}"  Source="header.jpg" Aspect="AspectFill" GridLayout.Column="1">
+        <Image BackgroundColor="Red" IsVisible="{x:StaticResource showimage}"  Source="header.jpg" Aspect="AspectFill" Grid.Column="1">
           
         </Image>
     </Grid>
