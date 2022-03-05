@@ -35,9 +35,9 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         _broadcastGroup = broadcastGroup;
         Debug.Assert(sendport != null, nameof(sendport) + " != null");
         _sendport = sendport;
-        this._udpClient = new UdpClient(int.Parse(this._localport));
-        this._udpClient.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-        this.receiveReady();
+        this._udpClient = new UdpClient();
+       // this._udpClient.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
+        //this.receiveReady();
     }
     public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
     {
@@ -102,8 +102,14 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         else
         {
             byte[] sendbytes = Encoding.Unicode.GetBytes(content);
-            var send_res= await this._udpClient.SendAsync(sendbytes, sendbytes.Length,
-                new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport)));
+
+            this._udpClient = new UdpClient();
+            var ipe = new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport));
+            this._udpClient.Send(sendbytes,sendbytes.Length,ipe);
+            this._udpClient.Close();
+            // var send_res= await this._udpClient.SendAsync(sendbytes, sendbytes.Length,
+            //     new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport)));
+            // this._udpClient.Close();
         }
 
     }
