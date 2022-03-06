@@ -6,10 +6,14 @@ using TransformInterface;
 
 namespace LocalNetTransformImpl;
 
+using System.Data.SqlTypes;
+
+using TransformInterface.Models;
+
 /// <summary>
 /// 局域网发送文本实现
 /// </summary>
-public class LocalNetTransformImpl:ITransformText,IReceiveText
+public class LocalNetTransformImpl:ITransformText
 {
  
     private readonly string _localport;
@@ -17,7 +21,12 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     private readonly string _sendport;
     private readonly IDiscoverDevices _discoverDevices;
 
-    private UdpClient _udpClient = null;
+    /// <summary>
+    /// 接受循环停止标记
+    /// </summary>
+    private bool receiveFlag = true;
+
+
 
     
     /// <summary>
@@ -29,68 +38,23 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
     public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport)
     {
        
-        Debug.Assert(localport != null, nameof(localport) + " != null");
         _localport = localport;
-        Debug.Assert(broadcastGroup != null, nameof(broadcastGroup) + " != null");
         _broadcastGroup = broadcastGroup;
-        Debug.Assert(sendport != null, nameof(sendport) + " != null");
         _sendport = sendport;
-        this._udpClient = new UdpClient();
-       // this._udpClient.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-        //this.receiveReady();
     }
     public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
     {
        
-        Debug.Assert(localport != null, nameof(localport) + " != null");
         _localport = localport;
-        Debug.Assert(broadcastGroup != null, nameof(broadcastGroup) + " != null");
         _broadcastGroup = broadcastGroup;
-        Debug.Assert(sendport != null, nameof(sendport) + " != null");
         _sendport = sendport;
-        Debug.Assert(discoverDevices != null, nameof(discoverDevices) + " != null");
         _discoverDevices = discoverDevices;
-        this._udpClient = new UdpClient(Int32.Parse(this._localport));
-        this.receiveReady();
+       
     }
     //接收线程
     Thread t;
     
-    private void receiveReady()
-    {
-
-
-        var udpreceiver = new UdpClient(int.Parse(this._sendport));
-        udpreceiver.JoinMulticastGroup(IPAddress.Parse(this._broadcastGroup));
-       // var recivecast = new IPEndPoint(IPAddress.Parse(this._broadcastGroup),int.Parse(this._sendport));
-       // this._udpClient.EnableBroadcast = true;
-      
-        //udpreceiver.EnableBroadcast = true;
-        t = new Thread(() =>
-        {
-            while (true)
-            {
-
-                var result = udpreceiver.ReceiveAsync().Result;
-                if (result.Buffer!=null)
-                {
-                    string data = Encoding.UTF8.GetString(result.Buffer);
-                    this.ReceiveDataEvent?.Invoke(data);
-                }
-               
-               // var result = udpreceiver.Receive(ref recivecast);
-                //if (result.Length != 0)
-                //{
-                //    string data = Encoding.UTF8.GetString(result);
-                //    this.ReceiveDataEvent?.Invoke("received");
-                //}
-
-            }
-            
-        });
-        t.Start();
-    
-    }
+ 
     
     public async Task TransformText(string content)
     {
@@ -103,16 +67,15 @@ public class LocalNetTransformImpl:ITransformText,IReceiveText
         {
             byte[] sendbytes = Encoding.Unicode.GetBytes(content);
 
-            this._udpClient = new UdpClient();
-            var ipe = new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport));
-            this._udpClient.Send(sendbytes,sendbytes.Length,ipe);
-            this._udpClient.Close();
-            // var send_res= await this._udpClient.SendAsync(sendbytes, sendbytes.Length,
-            //     new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport)));
-            // this._udpClient.Close();
+            UdpClient uc = new UdpClient(int.Parse(this._localport));
+            var send_res = await uc.SendAsync(sendbytes, sendbytes.Length,
+                new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport)));
+            uc.Close();
         }
 
     }
 
     public event ReceiveDataDelegate? ReceiveDataEvent;
+
+
 }
