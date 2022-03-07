@@ -5,18 +5,19 @@ using System.Net;
 using TransformInterface;
 using LocalNetTransformImpl;
 
-//UdpReceiveDataImpl udpReceive = new UdpReceiveDataImpl(IPAddress.Broadcast.ToString(), "9000","8999");
-//udpReceive.ReceiveDataEvent += UdpReceive_ReceiveDataEvent;
+UdpReceiveDataImpl udpReceive = new UdpReceiveDataImpl("224.0.0.1", "9000");
+udpReceive.ReceiveDataEvent += UdpReceive_ReceiveDataEvent;
 
-//void UdpReceive_ReceiveDataEvent(TransformInterface.Models.ReceiveDataModel content)
-//{
+void UdpReceive_ReceiveDataEvent(TransformInterface.Models.ReceiveDataModel content)
+{
 
-//    Console.WriteLine(content.Content);
-//}
+    Console.WriteLine(content.Content);
+}
 
-var discover = new UdpDiscoverDeviceImpl("8999", IPAddress.Broadcast.ToString(), "9000", "order");
+var discover = new UdpDiscoverDeviceImpl("8999", "224.0.0.1", "10000", "order");
 var data= discover.Discover().Result;
 
+Console.WriteLine(data.Count);
 
 //Console.WriteLine("hello");
 //var impl = new LocalNetTransformImpl.LocalNetTransformImpl("8999", IPAddress.Broadcast.ToString(),"9000");

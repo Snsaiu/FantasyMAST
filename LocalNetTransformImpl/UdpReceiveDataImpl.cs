@@ -11,16 +11,16 @@ public class UdpReceiveDataImpl:IReceiveData
 {
     private readonly string ipaddress;
 
-    private readonly string port;
+ 
 
     private readonly string receivePort;
 
     private bool receiveFlag = true;
 
-    public UdpReceiveDataImpl(string ipaddress, string port,string receivePort)
+    public UdpReceiveDataImpl(string ipaddress,string receivePort)
     {
         this.ipaddress = ipaddress;
-        this.port = port;
+
         this.receivePort = receivePort;
         this.receiveReady();
     }
@@ -29,8 +29,8 @@ public class UdpReceiveDataImpl:IReceiveData
 
     private void receiveReady()
     {
-        var udpreceiver = new UdpClient(int.Parse(this.port));
-        var recivecast = new IPEndPoint(IPAddress.Parse(this.ipaddress), int.Parse(this.receivePort));
+        var udpreceiver = new UdpClient(int.Parse(this.receivePort));
+        udpreceiver.JoinMulticastGroup(IPAddress.Parse(this.ipaddress));
         udpreceiver.EnableBroadcast = true;
 
         t = new Thread(
