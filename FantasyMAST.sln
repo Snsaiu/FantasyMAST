@@ -5,15 +5,23 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyMAST", "FantasyMAST\FantasyMAST.csproj", "{6A4599B8-42CF-4F8C-8492-4A4F6257B945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{68DA199C-03BC-4F91-B660-5DF6B5643E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{68DA199C-03BC-4F91-B660-5DF6B5643E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformInterface", "TransformInterface\TransformInterface.csproj", "{FE5327AC-2F95-4D51-8A05-2D20896BF1CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformInterface", "TransformInterface\TransformInterface.csproj", "{FE5327AC-2F95-4D51-8A05-2D20896BF1CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNetTransformImpl", "LocalNetTransformImpl\LocalNetTransformImpl.csproj", "{66749100-486A-4843-8435-3F96130ACA8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalNetTransformImpl", "LocalNetTransformImpl\LocalNetTransformImpl.csproj", "{66749100-486A-4843-8435-3F96130ACA8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastTest", "MastTest\MastTest.csproj", "{168BCB3E-E760-4B81-A7E9-94653F235311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MastTest", "MastTest\MastTest.csproj", "{168BCB3E-E760-4B81-A7E9-94653F235311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastConsoleTest", "MastConsoleTest\MastConsoleTest.csproj", "{1363F28C-8C78-45E4-8A79-F7D45E6A9BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MastConsoleTest", "MastConsoleTest\MastConsoleTest.csproj", "{1363F28C-8C78-45E4-8A79-F7D45E6A9BDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MASTConfigInterface", "MASTConfigInterface\MASTConfigInterface.csproj", "{6D754ECD-A89A-4A19-BA07-649375421383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonMASTConfig", "JsonMASTConfig\JsonMASTConfig.csproj", "{8DC9E7B0-3474-47E2-B506-030149726CF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalClient", "TerminalClient\TerminalClient.csproj", "{A48AB92C-2B28-41DE-8969-D76FF4864D7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyResultModel", "FantasyResultModel\FantasyResultModel.csproj", "{BB07727A-930F-433B-9E04-4903DE771231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +57,22 @@ Global
 		{1363F28C-8C78-45E4-8A79-F7D45E6A9BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1363F28C-8C78-45E4-8A79-F7D45E6A9BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1363F28C-8C78-45E4-8A79-F7D45E6A9BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D754ECD-A89A-4A19-BA07-649375421383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D754ECD-A89A-4A19-BA07-649375421383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D754ECD-A89A-4A19-BA07-649375421383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D754ECD-A89A-4A19-BA07-649375421383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC9E7B0-3474-47E2-B506-030149726CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC9E7B0-3474-47E2-B506-030149726CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC9E7B0-3474-47E2-B506-030149726CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC9E7B0-3474-47E2-B506-030149726CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A48AB92C-2B28-41DE-8969-D76FF4864D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A48AB92C-2B28-41DE-8969-D76FF4864D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A48AB92C-2B28-41DE-8969-D76FF4864D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A48AB92C-2B28-41DE-8969-D76FF4864D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB07727A-930F-433B-9E04-4903DE771231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB07727A-930F-433B-9E04-4903DE771231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB07727A-930F-433B-9E04-4903DE771231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB07727A-930F-433B-9E04-4903DE771231}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
