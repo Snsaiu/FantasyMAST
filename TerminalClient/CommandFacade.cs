@@ -9,6 +9,13 @@ public class CommandFacade
     {
         HelpCommandParse helpCommand = new HelpCommandParse(command);
 
-        helpCommand.Parse();
+        if (helpCommand.Parse())
+        {
+            ConsoleHelper.WriteSuccessLine("命令执行成功!");
+        }
+        else
+        {
+            ConsoleHelper.WriteErrorLine("命令执行错误!请检查命令格式是否正确");
+        }
     }
 }

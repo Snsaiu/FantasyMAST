@@ -3,6 +3,10 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
+using FantasyMASTApplication;
+
+using FantasyResultModel;
+
 using TerminalClient;
 
 
@@ -13,18 +17,60 @@ string exitFlag = "exit";
 string? input = "";
 
 
-CommandFacade commandFacade = new CommandFacade();
-do
+// 检查配置文件
+
+BootstrapConfig bootstrapConfig = new BootstrapConfig();
+while (true)
 {
-    input = Console.ReadLine();
-    if (string.IsNullOrWhiteSpace(input))
+    ResultBase<string> loadConfigFile = bootstrapConfig.LoadConfigFile();
+    if (loadConfigFile.Ok)
     {
-        ConsoleHelper.WriteErrorLine("命令不能为空!");
+        break;
     }
     else
     {
-        commandFacade.Run(input);
+        ConsoleHelper.WriteErrorLine(loadConfigFile.ErrorMsg);
+        ConsoleHelper.WriteErrorLine("请选择配置文件保存位置(不需要填入文件名，精确到文件夹即可):");
+        string configfile = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(configfile))
+        {
+            continue;
+            
+        }
+        else
+        {
+            ResultBase<string> writeConfigPath = bootstrapConfig.WriteConfigPath(Path.Combine(configfile, "config.json"));
+            if (writeConfigPath.Ok)
+            {
+                ConsoleHelper.WriteSuccessLine("配置成功!");
+                break;
+            }
+        }
+
     }
+}
+
+
+CommandFacade commandFacade = new CommandFacade();
+do
+{
+    try
+    {
+        input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            ConsoleHelper.WriteErrorLine("命令不能为空!");
+        }
+        else
+        {
+            commandFacade.Run(input);
+        }
+    }
+    catch (Exception e)
+    {
+        
+    }
+  
 }
 while (input!=exitFlag);
 

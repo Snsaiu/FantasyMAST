@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MastConsoleTest", "MastCons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MASTConfigInterface", "MASTConfigInterface\MASTConfigInterface.csproj", "{6D754ECD-A89A-4A19-BA07-649375421383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonMASTConfig", "JsonMASTConfig\JsonMASTConfig.csproj", "{8DC9E7B0-3474-47E2-B506-030149726CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonMASTConfig", "JsonMASTConfig\JsonMASTConfig.csproj", "{8DC9E7B0-3474-47E2-B506-030149726CF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalClient", "TerminalClient\TerminalClient.csproj", "{A48AB92C-2B28-41DE-8969-D76FF4864D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerminalClient", "TerminalClient\TerminalClient.csproj", "{A48AB92C-2B28-41DE-8969-D76FF4864D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyResultModel", "FantasyResultModel\FantasyResultModel.csproj", "{BB07727A-930F-433B-9E04-4903DE771231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyResultModel", "FantasyResultModel\FantasyResultModel.csproj", "{BB07727A-930F-433B-9E04-4903DE771231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyMASTApplication", "FantasyMASTApplication\FantasyMASTApplication.csproj", "{0F7513E3-9D73-4E12-AC11-C21BB30B5A01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{BB07727A-930F-433B-9E04-4903DE771231}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB07727A-930F-433B-9E04-4903DE771231}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB07727A-930F-433B-9E04-4903DE771231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7513E3-9D73-4E12-AC11-C21BB30B5A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7513E3-9D73-4E12-AC11-C21BB30B5A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7513E3-9D73-4E12-AC11-C21BB30B5A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7513E3-9D73-4E12-AC11-C21BB30B5A01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,6 +25,24 @@ public static class ConsoleHelper
     }
 
     /// <summary>
+    /// 命令参数错误提示
+    /// </summary>
+    /// <param name="commandName">命令名称</param>
+    public static void WriteCommandParamCountErrorLine(string commandName)
+    {
+        WriteErrorLine(commandName+ " 命令参数数量错误,请使用 -help 查看帮助!");
+    }
+
+    /// <summary>
+    /// 命令参数指令错误
+    /// </summary>
+    /// <param name="commandName">命令名称</param>
+    public static void WriteCommandParamErrorLine(string commandName)
+    {
+        WriteErrorLine(commandName + " 命令指令错误,请使用 -help 查看帮助!");
+    }
+
+        /// <summary>
     /// 打印警告信息
     /// </summary>
     /// <param name="str">待打印的字符串</param>

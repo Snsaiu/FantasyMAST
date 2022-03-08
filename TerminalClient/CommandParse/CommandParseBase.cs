@@ -103,19 +103,27 @@ public abstract class CommandParseBase
 
     }
 
-    public void Parse()
+    public bool Parse()
     {
 
          var splits= this.splitCommand();
          if (splits==null||splits.Count==0)
          {
-             return;
+             return false;
          }
 
         ResultBase<bool> resultBase = this.ParseCommand(splits);
         if (resultBase.Ok&&resultBase.Data==false&&this.NextCommand!=null)
         {
-            this.NextCommand.Parse();
+          return  this.NextCommand.Parse();
+        }
+        else if (resultBase.Ok && resultBase.Data == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

@@ -12,7 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FantasyMASTApplication\FantasyMASTApplication.csproj" />
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
