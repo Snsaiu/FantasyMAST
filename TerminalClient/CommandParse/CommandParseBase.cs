@@ -1,5 +1,7 @@
 ﻿namespace TerminalClient.CommandParse;
 
+using System.Text.RegularExpressions;
+
 using FantasyResultModel;
 
 public abstract class CommandParseBase
@@ -19,18 +21,86 @@ public abstract class CommandParseBase
 
     private List<string> splitCommand()
     {
-        string[] splits = this.command.Split(" ");
 
         List<string> res = new List<string>();
-        foreach (string split in splits)
+
+        int count = Regex.Matches(this.command, "\"").Count;
+        if (count % 2 == 0)
         {
-            if (string.IsNullOrWhiteSpace(split)==false)
+            int startIndex = 0;
+            List<int> potIndexs = new List<int>();
+            for (int i = 0; i < count; i++)
             {
-               res.Add(split); 
+                int calc = this.command.IndexOf("\"", startIndex);
+                potIndexs.Add(calc);
+                startIndex = calc + 1;
             }
+
+            string command_str = this.command;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            for (int i = 0; i < potIndexs.Count; i += 2)
+            {
+                string data = command_str.Substring(potIndexs[i] + 1, potIndexs[i + 1] - potIndexs[i] - 1);
+                dic["@" + i] = $"\"{data}\"";
+            }
+
+            foreach (KeyValuePair<string, string> pair in dic)
+            {
+                command_str = command_str.Replace(pair.Value, pair.Key);
+            }
+
+            string[] splits = command_str.Split(" ");
+            foreach (string split in splits)
+            {
+                bool flag=false;
+                if (string.IsNullOrWhiteSpace(split) == false)
+                {
+
+                    foreach (KeyValuePair<string, string> keyValuePair in dic)
+                    {
+                        if (split==keyValuePair.Key)
+                        {
+                            res.Add(keyValuePair.Value.Replace("\"",""));
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (flag==false)
+                    {
+                        res.Add(split);
+                    }
+
+                }
+            }
+
+            return res;
+
+        }
+       else if (count == 0)
+        {
+            string[] splits = this.command.Split(" ");
+            foreach (string split in splits)
+            {
+                if (string.IsNullOrWhiteSpace(split) == false)
+                {
+                    res.Add(split);
+                }
+            }
+
+            return res;
+        }
+        else
+        {
+            //命令中的单引号数量有错误
+            ConsoleHelper.WriteErrorLine(this.command+" 命令中双引号数量有误!");
+            return res;
         }
 
-        return res;
+
+
+        //
+
     }
 
     public void Parse()
@@ -39,8 +109,6 @@ public abstract class CommandParseBase
          var splits= this.splitCommand();
          if (splits==null||splits.Count==0)
          {
-             ConsoleHelper.WriteErrorLine("当前命令为空！无法继续执行");
-
              return;
          }
 
