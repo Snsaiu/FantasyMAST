@@ -9,6 +9,15 @@ public class CommandFacade
     {
         HelpCommandParse helpCommand = new HelpCommandParse(command);
 
+        LoginCommandParse loginCommand = new LoginCommandParse(command);
+        helpCommand.NextCommand = loginCommand;
+
+        LogoutCommandParse logoutCommand = new LogoutCommandParse(command);
+        loginCommand.NextCommand = logoutCommand;
+
+        UserCommandParse userCommand = new UserCommandParse(command);
+        logoutCommand.NextCommand= userCommand;
+
         if (helpCommand.Parse())
         {
             ConsoleHelper.WriteSuccessLine("命令执行成功!");

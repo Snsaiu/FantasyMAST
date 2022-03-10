@@ -17,12 +17,15 @@ public class HelpCommandParse:CommandParseBase
     protected override ResultBase<bool> ParseCommand(List<string> flags)
     {
 
-        if (flags[0]=="-help")
+        if (flags[0]=="help")
         {
 
 
             ConsoleHelper.WriteInfoLine("login 登录/注册用户");
             ConsoleHelper.WriteInfoLine("   -u <name> 登录/注册的用户名");
+
+            ConsoleHelper.WriteInfoLine("logout 登出");
+            ConsoleHelper.WriteInfoLine("user 查看当前用户");
 
             return new SuccessResultModel<bool>(true);
 

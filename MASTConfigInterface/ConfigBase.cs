@@ -23,22 +23,22 @@
         /// <summary>
         /// 存储路径
         /// </summary>
-        public string? StorePath { get; protected set; }
+        public string? StorePath { get;  set; }
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public string? UserName { get; protected set; }
+        public string? UserName { get;  set; }
 
         /// <summary>
         /// 当前设备信息
         /// </summary>
-        public List<DeviceInfo>? Devices { get; protected set; }
+        public List<DeviceInfo>? Devices { get;  set; }
 
         /// <summary>
         /// 当前设备信息
         /// </summary>
-        public DeviceInfo? CurrentDeviceInfo { get; protected set; }
+        public DeviceInfo? CurrentDeviceInfo { get;  set; }
 
 
 

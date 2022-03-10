@@ -10,7 +10,7 @@ public class ErrorResultModel<T>:ResultBase<T>
         this.Code=code;
     }
 
-    public ErrorResultModel(string errorMessage)
+    public ErrorResultModel(string? errorMessage)
     {
         this.ErrorMsg = errorMessage;
         this.Ok = false;

@@ -12,9 +12,11 @@
     public class BootstrapConfig
     {
 
+     
+
         public BootstrapConfig()
         {
-            
+        
         }
 
         public ResultBase<string> LoadConfigFile()
