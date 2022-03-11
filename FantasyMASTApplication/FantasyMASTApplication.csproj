@@ -24,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
     <ProjectReference Include="..\JsonMASTConfig\JsonMASTConfig.csproj" />
+    <ProjectReference Include="..\LocalNetTransformImpl\LocalNetTransformImpl.csproj" />
+    <ProjectReference Include="..\TransformInterface\TransformInterface.csproj" />
   </ItemGroup>
 
 </Project>
