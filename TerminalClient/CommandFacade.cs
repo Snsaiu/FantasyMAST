@@ -21,6 +21,9 @@ public class CommandFacade
         SettingCommandParse settingCommand=new SettingCommandParse(command);
         userCommand.NextCommand = settingCommand;
 
+        DiscoverDeviceCommandParse discoverDeviceCommandParse=new DiscoverDeviceCommandParse(command);
+        settingCommand.NextCommand = discoverDeviceCommandParse;
+
         if (helpCommand.Parse())
         {
             ConsoleHelper.WriteSuccessLine("命令执行成功!");

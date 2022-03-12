@@ -29,10 +29,10 @@ public class DiscoverDevicesApplication
     /// </summary>
     /// <param name="token">设备发送的密文</param>
     /// <returns>返回结果</returns>
-    public async Task<ResultBase< List<DiscoveredDeviceModel>>> DiscoverAsync()
+    public async Task<ResultBase< List<DiscoveredDeviceModel>>> LocalNetDiscoverAsync()
     {
         // 读取配置文件，获得端口；
-        JsonConfig jc = new JsonConfig(this.filepath);
+        JsonConfig jc = new JsonConfig(this.filepath);      
 
 
         this.udpDiscoverDevices = new UdpDiscoverDeviceImpl(jc.GroupAddress, jc.SendPort, jc.UserName);
