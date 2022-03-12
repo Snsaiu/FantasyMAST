@@ -9,7 +9,6 @@ namespace LocalNetTransformImpl;
 
 public class UdpDiscoverDeviceImpl:IDiscoverDevices
 {
-    private readonly string _localport;
     private readonly string _broadcastGroup;
     private readonly string _sendport;
 
@@ -20,10 +19,10 @@ public class UdpDiscoverDeviceImpl:IDiscoverDevices
     /// </summary>
     public int WaitTime { get; set; } = 2;
     
-    public UdpDiscoverDeviceImpl(string localport,string broadcastGroup,string sendport,string discoverOrder)
+    public UdpDiscoverDeviceImpl(string broadcastGroup,string sendport,string discoverOrder)
     {
        
-        _localport = localport;
+       
         _broadcastGroup = broadcastGroup;
         _sendport = sendport;
         this.discoverOrder = discoverOrder;

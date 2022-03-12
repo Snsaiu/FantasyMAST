@@ -51,7 +51,21 @@ while (true)
 }
 
 
-
+//开始监听
+ReceiveDataApplication receiveDataApplication = new ReceiveDataApplication();
+receiveDataApplication.ListenEvent += (data) =>
+{
+    global::System.Console.WriteLine(data.Content);
+};
+ResultBase<string> receive_listen_res = receiveDataApplication.StartListen();
+if (receive_listen_res.Ok)
+{
+    ConsoleHelper.WriteSuccessLine(receive_listen_res.Data);
+}
+else
+{
+    ConsoleHelper.WriteErrorLine(receive_listen_res.Data);
+}
 
 
 

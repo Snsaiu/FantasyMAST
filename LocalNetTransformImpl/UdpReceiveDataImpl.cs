@@ -11,8 +11,6 @@ public class UdpReceiveDataImpl:IReceiveData
 {
     private readonly string ipaddress;
 
- 
-
     private readonly string receivePort;
 
     private bool receiveFlag = true;
@@ -27,7 +25,7 @@ public class UdpReceiveDataImpl:IReceiveData
 
     private Thread t;
 
-    private void receiveReady()
+    public void receiveReady()
     {
         var udpreceiver = new UdpClient(int.Parse(this.receivePort));
         udpreceiver.JoinMulticastGroup(IPAddress.Parse(this.ipaddress));
