@@ -26,8 +26,7 @@ public class LoginCommandParse: CommandParseBase
                 {
 
                     string loginName = flags[2];
-                    //todo 登录命令执行
-
+                 
                     ResultBase<bool> login_res = this.userApplication.Login(loginName);
 
                     if (login_res.Ok)

@@ -16,6 +16,12 @@
             this.CurrentDeviceInfo = null;
             this.Devices = null;
             this.StorePath = "";
+
+            this.SendPort = "";
+            this.ReceivePort = "";
+            this.DiscoverPort ="";
+            this.GroupAddress = "";
+
             return this.writeFile();
         }
 
@@ -45,9 +51,13 @@
              this.CurrentDeviceInfo = jsonconfig.CurrentDeviceInfo;
              this.Devices = jsonconfig.Devices;
              this.StorePath = jsonconfig.StorePath;
+            this.SendPort=jsonconfig.SendPort;
+            this.ReceivePort=jsonconfig.ReceivePort; ;
+            this.DiscoverPort=jsonconfig.DiscoverPort;
+            this.GroupAddress = jsonconfig.GroupAddress;
         }
 
-        public JsonConfig(string filePath, string userName)
+        public JsonConfig(string filePath, string userName,bool initPort)
             : base(userName)
         {
             this.filePath = filePath;
@@ -55,6 +65,15 @@
             File.Delete(this.filePath);
 
             this.UserName=userName;
+            if (initPort)
+            {
+                this.SendPort = "8999";
+                this.ReceivePort = "9000";
+                this.DiscoverPort = "8888";
+                this.GroupAddress = "224.0.0.1";
+
+            }
+
 
             writeFile();
         }
@@ -73,6 +92,34 @@
             }
 
             
+        }
+
+        public override bool UpdateSendPort(string? port)
+        {
+        
+            this.SendPort=port;
+            return this.writeFile();
+
+        }
+
+        public override bool UpdateReceivePort(string? port)
+        {
+
+            this.ReceivePort = port;
+            return this.writeFile();
+        }
+
+        public override bool UpdateGroupAddress(string? address)
+        {
+            this.GroupAddress = address;
+            return this.writeFile();
+
+        }
+
+        public override bool UpdateDiscoverPort(string? port)
+        {
+            this.DiscoverPort = port;
+            return this.writeFile();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace FantasyMASTApplication;
 
+using FantasyMASTApplication.Models;
 using FantasyResultModel;
 using FantasyResultModel.Impls;
 
@@ -30,7 +31,8 @@ public class UserApplication
     {
         try
         {
-            JsonConfig jc = new JsonConfig(this.filepath, name);
+            JsonConfig jc = new JsonConfig(this.filepath, name,true);
+   
             return new SuccessResultModel<bool>(true);
         }
         catch (Exception e)
@@ -41,6 +43,7 @@ public class UserApplication
      
     }
 
+    
     /// <summary>
     /// 登出
     /// </summary>
@@ -79,4 +82,6 @@ public class UserApplication
 
         return new SuccessResultModel<string>(jc.UserName);
     }
+
+
 }

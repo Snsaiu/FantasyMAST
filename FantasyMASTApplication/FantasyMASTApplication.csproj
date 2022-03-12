@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
     <ProjectReference Include="..\JsonMASTConfig\JsonMASTConfig.csproj" />
     <ProjectReference Include="..\LocalNetTransformImpl\LocalNetTransformImpl.csproj" />

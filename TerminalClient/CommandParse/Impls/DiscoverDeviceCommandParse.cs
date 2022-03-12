@@ -34,7 +34,7 @@ public class DiscoverDeviceCommandParse : CommandParseBase
                     case "-n-online-list":
                         break;
                 }
-
+                return null;
             }
             else
             {

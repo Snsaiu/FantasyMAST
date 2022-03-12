@@ -18,6 +18,9 @@ public class CommandFacade
         UserCommandParse userCommand = new UserCommandParse(command);
         logoutCommand.NextCommand= userCommand;
 
+        SettingCommandParse settingCommand=new SettingCommandParse(command);
+        userCommand.NextCommand = settingCommand;
+
         if (helpCommand.Parse())
         {
             ConsoleHelper.WriteSuccessLine("命令执行成功!");

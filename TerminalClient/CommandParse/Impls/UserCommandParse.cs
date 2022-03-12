@@ -42,7 +42,7 @@ public class UserCommandParse : CommandParseBase
         }
         else
         {
-            ConsoleHelper.WriteCommandParamCountErrorLine("user");
+          //  ConsoleHelper.WriteCommandParamCountErrorLine("user");
             return new SuccessResultModel<bool>(false);
         }
     }

@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommandParse\Impls\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FantasyMASTApplication\FantasyMASTApplication.csproj" />
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
   </ItemGroup>

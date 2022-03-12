@@ -40,8 +40,25 @@
         /// </summary>
         public DeviceInfo? CurrentDeviceInfo { get;  set; }
 
+        /// <summary>
+        /// 组地址
+        /// </summary>
+     public string? GroupAddress { get; set; }
 
+        /// <summary>
+        /// 接收端口
+        /// </summary>
+        public string? ReceivePort { get; set; }
 
+        /// <summary>
+        /// 发送端口
+        /// </summary>
+        public string? SendPort { get; set; }
+
+        /// <summary>
+        /// 设备发现端口
+        /// </summary>
+        public string? DiscoverPort { get; set; }
 
         /// <summary>
         /// 当用户在本设备清除的时候调用此方法将配置文件全部清除
@@ -62,6 +79,34 @@
         /// <param name="path">文件路径</param>
         /// <returns>修改成功返回true，否则返回false</returns>
         public abstract bool UpdateStorePath(string? path);
+
+        /// <summary>
+        /// 更新发送端口
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public abstract bool UpdateSendPort(string? port);
+
+        /// <summary>
+        /// 更新接收端口
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public abstract bool UpdateReceivePort(string? port);
+
+        /// <summary>
+        /// 更新组端口
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public abstract bool UpdateGroupAddress(string? address);
+
+        /// <summary>
+        /// 更新设备发现端口
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public abstract bool UpdateDiscoverPort(string? port);
 
     }
 }

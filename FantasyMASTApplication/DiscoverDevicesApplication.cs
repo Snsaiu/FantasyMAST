@@ -15,7 +15,7 @@ public class DiscoverDevicesApplication
     private IDiscoverDevices udpDiscoverDevices = null;
     public DiscoverDevicesApplication()
     {
-        this.udpDiscoverDevices = new UdpDiscoverDeviceImpl();
+      
     }
 
     /// <summary>
@@ -25,6 +25,9 @@ public class DiscoverDevicesApplication
     /// <returns>返回结果</returns>
     public Task<ResultBase< List<DiscoveredDeviceModel>>> DiscoverAsync(string token)
     {
+        // 读取配置文件，获得端口；
+
+        return null;
 
 
     }

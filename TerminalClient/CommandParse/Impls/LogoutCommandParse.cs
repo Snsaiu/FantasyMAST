@@ -43,7 +43,7 @@ public class LogoutCommandParse: CommandParseBase
         }
         else
         {
-            ConsoleHelper.WriteCommandParamCountErrorLine("logout");
+         //   ConsoleHelper.WriteCommandParamCountErrorLine("logout");
             return new SuccessResultModel<bool>(false);
         }
     }
