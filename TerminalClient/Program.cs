@@ -49,23 +49,45 @@ while (true)
 
     }
 }
+// 判断用户是否登录
 
+UserApplication userApplication = new UserApplication();
+//检查是否有用户已经存在，如果存在才可以开始监听
+ResultBase<string> userinfo_res= userApplication.GetUserInfo();
+if (userinfo_res.Ok)
+{
+    if (userinfo_res.Data=="")
+    {
 
-//开始监听
-ReceiveDataApplication receiveDataApplication = new ReceiveDataApplication();
-receiveDataApplication.ListenEvent += (data) =>
-{
-    global::System.Console.WriteLine(data.Content);
-};
-ResultBase<string> receive_listen_res = receiveDataApplication.StartListen();
-if (receive_listen_res.Ok)
-{
-    ConsoleHelper.WriteSuccessLine(receive_listen_res.Data);
+        ConsoleHelper.WriteWarningLine("请使用login -u <name> 登录,并重启,否则无法使用");
+    }
+    else
+    {
+        //开始监听
+        ReceiveDataApplication receiveDataApplication = new ReceiveDataApplication();
+        receiveDataApplication.ListenEvent += (data) =>
+        {
+            global::System.Console.WriteLine(data.Content);
+        };
+        ResultBase<string> receive_listen_res = receiveDataApplication.StartListen();
+        if (receive_listen_res.Ok)
+        {
+            ConsoleHelper.WriteSuccessLine(receive_listen_res.Data);
+        }
+        else
+        {
+            ConsoleHelper.WriteErrorLine(receive_listen_res.Data);
+        }
+
+    }
 }
 else
 {
-    ConsoleHelper.WriteErrorLine(receive_listen_res.Data);
+    ConsoleHelper.WriteWarningLine("请使用login -u <name> 登录,并重启,否则无法使用");
 }
+
+
+
 
 
 

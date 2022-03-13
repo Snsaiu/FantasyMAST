@@ -45,16 +45,26 @@
         public JsonConfig(string filePath)
         {
             this.filePath = filePath;
-            string content= File.ReadAllText(this.filePath);
-             var jsonconfig= JsonConvert.DeserializeObject<JsonConfig>(content);
-             this.UserName = jsonconfig.UserName;
-             this.CurrentDeviceInfo = jsonconfig.CurrentDeviceInfo;
-             this.Devices = jsonconfig.Devices;
-             this.StorePath = jsonconfig.StorePath;
-            this.SendPort=jsonconfig.SendPort;
-            this.ReceivePort=jsonconfig.ReceivePort; ;
-            this.DiscoverPort=jsonconfig.DiscoverPort;
-            this.GroupAddress = jsonconfig.GroupAddress;
+            string content = "";
+            using (StreamReader sr=new StreamReader(this.filePath))
+            {
+                content=sr.ReadToEnd();
+            }
+           
+            if (content!="")
+            {
+                var jsonconfig = JsonConvert.DeserializeObject<JsonConfig>(content);
+                this.UserName = jsonconfig.UserName;
+                this.CurrentDeviceInfo = jsonconfig.CurrentDeviceInfo;
+                this.Devices = jsonconfig.Devices;
+                this.StorePath = jsonconfig.StorePath;
+                this.SendPort = jsonconfig.SendPort;
+                this.ReceivePort = jsonconfig.ReceivePort; ;
+                this.DiscoverPort = jsonconfig.DiscoverPort;
+                this.GroupAddress = jsonconfig.GroupAddress;
+
+            }
+            
         }
 
         public JsonConfig(string filePath, string userName,bool initPort)
@@ -83,7 +93,13 @@
             try
             {
                 string config = JsonConvert.SerializeObject(this);
-                File.WriteAllText(this.filePath, config);
+                //File.WriteAllText(this.filePath, config);
+                using (StreamWriter sw=new StreamWriter(this.filePath,false))
+                {
+                    sw.Write(config);
+                  
+                }
+
                 return true;
             }
             catch (Exception e)

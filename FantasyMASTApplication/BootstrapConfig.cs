@@ -55,7 +55,8 @@
                 {
                     File.Delete(path);
                 }
-                File.Create(path);
+                File.Create(path).Close();
+               
 
                 ApplicationSetting applicationSetting = new ApplicationSetting();
                 applicationSetting.Path = path;
