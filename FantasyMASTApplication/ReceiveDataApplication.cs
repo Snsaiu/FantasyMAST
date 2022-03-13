@@ -38,7 +38,7 @@ namespace FantasyMASTApplication
                 return new ErrorResultModel<string>("未设置组");
             }
 
-            this.receiveData = new UdpReceiveDataImpl(jc.GroupAddress, jc.ReceivePort);
+            this.receiveData = new UdpReceiveDataImpl(jc.GroupAddress, jc.SendPort);
 
             this.receiveData.ReceiveDataEvent += (data) =>
             {
