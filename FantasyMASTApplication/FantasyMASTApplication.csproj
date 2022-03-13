@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AesEncryption\AesEncryption.csproj" />
+    <ProjectReference Include="..\EncryptionInterface\EncryptionInterface.csproj" />
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
     <ProjectReference Include="..\JsonMASTConfig\JsonMASTConfig.csproj" />
     <ProjectReference Include="..\LocalNetTransformImpl\LocalNetTransformImpl.csproj" />

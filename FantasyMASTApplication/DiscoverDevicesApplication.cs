@@ -1,11 +1,18 @@
 ﻿namespace FantasyMASTApplication;
 
+using AesEncryption;
+
+using EncryptionInterface;
+
 using FantasyResultModel;
 using FantasyResultModel.Impls;
 using JsonMASTConfig;
 using LocalNetTransformImpl;
 
+using Newtonsoft.Json;
+
 using TransformInterface;
+using TransformInterface.Enums;
 using TransformInterface.Models;
 
 /// <summary>
@@ -16,10 +23,12 @@ public class DiscoverDevicesApplication
 
     private BootstrapConfig bootstrapConfig = null;
 
+ 
     private string filepath = "";
     private IDiscoverDevices udpDiscoverDevices = null;
     public DiscoverDevicesApplication()
     {
+      
         this.bootstrapConfig = new BootstrapConfig();
         this.filepath = this.bootstrapConfig.LoadConfigFile().Data;
     }
@@ -32,10 +41,17 @@ public class DiscoverDevicesApplication
     public async Task<ResultBase< List<DiscoveredDeviceModel>>> LocalNetDiscoverAsync()
     {
         // 读取配置文件，获得端口；
-        JsonConfig jc = new JsonConfig(this.filepath);      
+        JsonConfig jc = new JsonConfig(this.filepath);
+       var encryption = new DesEncryptionImpl(jc.UserName);
 
+       SendDataModel sdm = new SendDataModel(SendType.Discover, DataType.Other, jc.UserName);
+       string data_str= JsonConvert.SerializeObject(sdm);
 
-        this.udpDiscoverDevices = new UdpDiscoverDeviceImpl(jc.GroupAddress, jc.SendPort, jc.UserName);
+       string encryption_st= encryption.Encryption(data_str);
+
+        // 设置口令
+
+        this.udpDiscoverDevices = new UdpDiscoverDeviceImpl(jc.GroupAddress, jc.SendPort, encryption_st,jc.UserName);
         try
         {
             List<DiscoveredDeviceModel> task_res = await this.udpDiscoverDevices.Discover();

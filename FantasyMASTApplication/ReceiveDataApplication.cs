@@ -44,6 +44,9 @@ namespace FantasyMASTApplication
             {
                 if (this.ListenEvent != null)
                 {
+
+
+
                     this.ListenEvent.Invoke(data);
                 }
             };
