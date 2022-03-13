@@ -11,6 +11,13 @@ using TransformInterface;
 
 namespace FantasyMASTApplication
 {
+    using AesEncryption;
+
+    using Newtonsoft.Json;
+
+    using TransformInterface.Enums;
+    using TransformInterface.Models;
+
     public class ReceiveDataApplication
     {
         private BootstrapConfig bootstrapConfig = null;
@@ -45,13 +52,41 @@ namespace FantasyMASTApplication
                 if (this.ListenEvent != null)
                 {
 
-
+                    var ency = new DesEncryptionImpl(jc.UserName);
+                    string dec_str= ency.Deciphering(data.Content);
+                    if (dec_str!="")
+                    {
+                        SendDataModel sdm= JsonConvert.DeserializeObject<SendDataModel>(dec_str);
+                        switch (sdm.SendType)
+                        {
+                            case SendType.Discover:
+                                discoverProcess(sdm,data.Flag1);
+                                break;
+                            case SendType.TranformData:
+                                tranformdata(sdm.Content);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
 
                     this.ListenEvent.Invoke(data);
                 }
             };
 
             return new SuccessResultModel<string>($"组:{jc.GroupAddress} 端口:{jc.ReceivePort} 开始监听");
+        }
+
+        private void tranformdata(string? content)
+        {
+            
+
+        }
+
+        private void discoverProcess(SendDataModel data, string? address)
+        {
+
+
         }
     }
 }
