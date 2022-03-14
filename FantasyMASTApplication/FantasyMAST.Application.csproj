@@ -20,8 +20,9 @@
   <ItemGroup>
     <ProjectReference Include="..\AesEncryption\AesEncryption.csproj" />
     <ProjectReference Include="..\EncryptionInterface\EncryptionInterface.csproj" />
+    <ProjectReference Include="..\FantasyMAST.Builder\FantasyMAST.Builder.csproj" />
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
-    <ProjectReference Include="..\JsonMASTConfig\JsonMASTConfig.csproj" />
+    <ProjectReference Include="..\JsonMASTConfig\FantasyMAST.JsonConfig.csproj" />
     <ProjectReference Include="..\LocalNetTransformImpl\LocalNetTransformImpl.csproj" />
     <ProjectReference Include="..\TransformInterface\TransformInterface.csproj" />
   </ItemGroup>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FantasyMASTApplication\FantasyMASTApplication.csproj" />
+    <ProjectReference Include="..\FantasyMASTApplication\FantasyMAST.Application.csproj" />
     <ProjectReference Include="..\FantasyResultModel\FantasyResultModel.csproj" />
   </ItemGroup>
 

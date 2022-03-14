@@ -4,6 +4,8 @@ using AesEncryption;
 
 using EncryptionInterface;
 
+using FantasyMAST.Builder;
+
 using FantasyResultModel;
 using FantasyResultModel.Impls;
 using JsonMASTConfig;
@@ -42,7 +44,7 @@ public class DiscoverDevicesApplication
     {
         // 读取配置文件，获得端口；
         JsonConfig jc = new JsonConfig(this.filepath);
-       var encryption = new DesEncryptionImpl(jc.UserName);
+       var encryption = EncryptionBuilder.GetInstance(jc.UserName);
 
        SendDataModel sdm = new SendDataModel(SendType.Discover, DataType.Other, jc.UserName);
        string data_str= JsonConvert.SerializeObject(sdm);
@@ -51,7 +53,7 @@ public class DiscoverDevicesApplication
 
         // 设置口令
 
-        this.udpDiscoverDevices = new UdpDiscoverDeviceImpl(jc.GroupAddress, jc.SendPort, encryption_st,jc.UserName);
+        this.udpDiscoverDevices = DiscoverDevicesBuilder.GetUdpDiscoverDevicesInstance(jc.GroupAddress, jc.SendPort, encryption_st,jc.UserName);
         try
         {
             List<DiscoveredDeviceModel> task_res = await this.udpDiscoverDevices.Discover();

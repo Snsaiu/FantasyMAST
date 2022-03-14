@@ -2,6 +2,8 @@
 
 using System.Net;
 
+using FantasyMAST.Builder;
+
 using TransformInterface;
 using LocalNetTransformImpl;
 
@@ -22,7 +24,7 @@ using LocalNetTransformImpl;
 //Console.WriteLine("hello");
 
 
-var impl = new LocalNetTransformImpl.LocalNetTransformImpl("8999", "224.0.0.1", "9000");
+var impl = TransformTextBuilder.GetUdpTransform("8999", "224.0.0.1", "9000");
 
 
 //impl.ReceiveDataEvent += (x) =>
