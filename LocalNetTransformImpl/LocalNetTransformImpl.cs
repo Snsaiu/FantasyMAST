@@ -61,7 +61,7 @@ public class LocalNetTransformImpl:ITransformText
 
         if (this._discoverDevices!=null)
         {
-           await this._discoverDevices.Discover();
+        //   await this._discoverDevices.Discover();
         }
         else
         {
