@@ -16,7 +16,7 @@ using TransformInterface.Models;
 public class LocalNetTransformImpl:ITransformText
 {
  
-
+    private readonly string _localport;
     private readonly string _broadcastGroup;
     private readonly string _sendport;
     private readonly IDiscoverDevices _discoverDevices;
@@ -35,17 +35,17 @@ public class LocalNetTransformImpl:ITransformText
     /// <param name="localport">本机发送的端口</param>
     /// <param name="broadcastGroup">发送的局域网网段</param>
     /// <param name="sendport">发送时候局域网接受的端口</param>
-    public LocalNetTransformImpl(string broadcastGroup,string sendport)
+    public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport)
     {
        
-
+        _localport = localport;
         _broadcastGroup = broadcastGroup;
         _sendport = sendport;
     }
-    public LocalNetTransformImpl(string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
+    public LocalNetTransformImpl(string localport,string broadcastGroup,string sendport,IDiscoverDevices discoverDevices)
     {
        
-      
+        _localport = localport;
         _broadcastGroup = broadcastGroup;
         _sendport = sendport;
         _discoverDevices = discoverDevices;
@@ -67,10 +67,9 @@ public class LocalNetTransformImpl:ITransformText
         {
             byte[] sendbytes = Encoding.Unicode.GetBytes(content);
 
-            UdpClient uc = new UdpClient();
+            UdpClient uc = new UdpClient(int.Parse(this._localport));
             var send_res = await uc.SendAsync(sendbytes, sendbytes.Length,
                 new IPEndPoint(IPAddress.Parse(this._broadcastGroup), Int32.Parse(this._sendport)));
-            uc.Dispose();
             uc.Close();
         }
 
