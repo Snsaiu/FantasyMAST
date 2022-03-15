@@ -49,7 +49,7 @@ namespace FantasyMASTApplication
                 return new ErrorResultModel<string>("未设置组");
             }
 
-            this.receiveData = ReceiveDataBuilder.GetUdpReceiveDataInstance(jc.GroupAddress, jc.SendPort);
+            this.receiveData = ReceiveDataBuilder.GetUdpReceiveDataInstance(jc.GroupAddress, jc.ReceivePort);
 
             this.receiveData.ReceiveDataEvent += (data) =>
             {
@@ -94,7 +94,7 @@ namespace FantasyMASTApplication
             SendDataModel sdm = new SendDataModel(SendType.Discover, DataType.Other, "saiu");
             var enc= EncryptionBuilder.GetInstance(jc.UserName);
             string sendinfo = enc.Encryption(JsonConvert.SerializeObject(sdm));
-            var udp= TransformTextBuilder.GetUdpTransform(jc.DiscoverPort, jc.GroupAddress, jc.SendPort);
+            var udp= TransformTextBuilder.GetUdpTransform(jc.GroupAddress, jc.SendPort);
             udp.TransformText(sendinfo);
         }
     }
