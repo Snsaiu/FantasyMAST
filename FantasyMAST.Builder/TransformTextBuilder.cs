@@ -7,8 +7,8 @@ using TransformInterface;
 public static class TransformTextBuilder
 {
 
-    public static ITransformText GetUdpTransform(string localport, string broadcastGroup, string sendport)
+    public static ITransformText GetUdpTransform( string broadcastGroup, string sendport)
     {
-        return new LocalNetTransformImpl(localport, broadcastGroup, sendport);
+        return new LocalNetTransformImpl( broadcastGroup, sendport);
     }
 }
