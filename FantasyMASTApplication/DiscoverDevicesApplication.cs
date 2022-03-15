@@ -53,7 +53,7 @@ public class DiscoverDevicesApplication
 
         // 设置口令
 
-        this.udpDiscoverDevices = DiscoverDevicesBuilder.GetUdpDiscoverDevicesInstance(jc.GroupAddress, jc.DiscoverPort, encryption_st,jc.UserName);
+        this.udpDiscoverDevices = DiscoverDevicesBuilder.GetUdpDiscoverDevicesInstance(jc.GroupAddress, jc.SendPort, encryption_st,jc.UserName);
         try
         {
             List<DiscoveredDeviceModel> task_res = await this.udpDiscoverDevices.Discover();
